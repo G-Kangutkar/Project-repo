@@ -1,9 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 function Login (){
-
+    const { login } = useAuth(); 
     const [inputData, setInputData] = useState({
 
         email:'',
@@ -24,10 +25,11 @@ function Login (){
             console.log('Full response:', response.data);
             console.log('Login successful!', response.data);
             alert('Login successfully!');
-
-            const token = response?.data?.accessToken;
-            console.log('Extracted token:', token);
-            localStorage.setItem('token',token);
+            const { accessToken, id } = response.data;
+            login({ id, email: inputData.email }, accessToken);
+            // const token = response?.data?.accessToken;
+            // console.log('Extracted token:', token);
+            // localStorage.setItem('token',token);
             navigate('/account')
         } catch (error) {
             console.log('error at handling login form submission',error.message)
