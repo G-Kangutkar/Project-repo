@@ -56,9 +56,15 @@ export const sendMoney = async (req, res) => {
       .eq('id', sender_id)
       .maybeSingle()
 
-    if (senderError) return res.status(400).json({ status: false, error: senderError.message })
-    if (!sender)     return res.status(404).json({ status: false, error: "Sender not found" })
-
+    if (senderError) {
+        return res.status(400).json({ 
+        status: false, error: senderError.message 
+    })}
+    if (!sender) {
+         return res.status(404).json({
+         status: false, error: "Sender not found"
+         })
+        }
    
     if (sender.email === receiver_email) {
       return res.status(400).json({ status: false, error: "Cannot transfer to your own account" })
