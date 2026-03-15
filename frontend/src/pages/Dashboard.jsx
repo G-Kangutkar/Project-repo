@@ -34,7 +34,6 @@ export default function Dashboard() {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
         <h1 style={{ fontSize: 22, fontWeight: 700 }}>Dashboard</h1>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <span style={{ fontSize: 14, color: '#6b7280' }}>{user?.name || user?.email}</span>
           <button onClick={handleLogout} style={{ fontSize: 13, padding: '6px 12px', cursor: 'pointer' }}>
             Logout
           </button>
